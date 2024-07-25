@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.docker.operators.docker import DockerOperator
 from datetime import datetime
-from  data_producer.scripts.put_data_in_postgres import 
+# from  data_producer.scripts.put_data_in_postgres import 
 
 start_date = datetime.today() - timedelta(days=1)
 

@@ -20,7 +20,7 @@ logger.addHandler(ch)
 
 
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "sale_rossman_store")
-KAFKA_BOOTSTRAP_SERVER = os.getenv("KAFKA_BOOTSTRAP_SERVER", "kafka:9092")
+KAFKA_BOOTSTRAP_SERVER = os.getenv("KAFKA_BOOTSTRAP_SERVER", "172.18.0.5:9092")
 
 
 def preprocess_input_df(df: pd.DataFrame) -> pd.DataFrame:

@@ -2,8 +2,8 @@ from datetime import timedelta, datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.docker.operators.docker import DockerOperator
-from data_producer.scripts.put_data_in_postgres import (
-    subtract_date,
+from src.scripts.postgres import (
+subtract_date,
     date_from_baseline_back,
     read_csv,
     process_data,

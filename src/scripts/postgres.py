@@ -1,3 +1,5 @@
+
+
 import os
 import time
 import logging
@@ -11,7 +13,7 @@ logging.basicConfig(format=log_format, level=logging.INFO)
 
 SALES_TABLE_NAME = os.getenv('SALES_TABLE_NAME', 'rossman_sales')
 POSTGRES_PORT = os.getenv('POSTGRES_PORT', '5432')
-DB_CONNECTION_URL = os.getenv('DB_CONNECTION_URL', f'postgresql://spark_user:SuperSecurePwdHere@172.18.0.2:{POSTGRES_PORT}/spark_pg_db')
+DB_CONNECTION_URL = os.getenv('DB_CONNECTION_URL', f'postgresql://spark_user:SuperSecurePwdHere@172.18.0.4:{POSTGRES_PORT}/spark_pg_db')
 
 
 def subtract_date(baseline_date, this_date):
@@ -140,7 +142,7 @@ def main():
     """
     Main function to run the batch processing pipeline.
     """
-    df = read_csv('datasets/rossmann-store-sales/train_exclude_last_10d.csv')
+    df = read_csv('../datasets/rossmann-store-sales/train_exclude_last_10d.csv')
     processed_df = process_data(df)
     engine = connect_to_db(DB_CONNECTION_URL)
     setup_database(engine)

@@ -17,7 +17,7 @@ POSTGRES_JDBC_CONNECTION_URL = os.getenv(
     "POSTGRES_JDBC_CONNECTION_URL",
     f"jdbc:postgresql://postgres:{POSTGRES_PORT}/spark_pg_db",
 )
-KAFKA_BOOTSTRAP_SERVER = os.getenv("KAFKA_BOOTSTRAP_SERVER", "kafka:9092")
+KAFKA_BOOTSTRAP_SERVER = os.getenv("KAFKA_BOOTSTRAP_SERVER", "172.18.0.5:9092")
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "sale_rossman_store")
 SPARK_STREAM_CHECKPOINTS_PATH = os.getenv(
     "SPARK_STREAM_CHECKPOINTS_PATH", "/home/airflow/spark_streaming_checkpoints"
