@@ -2,7 +2,7 @@ from datetime import timedelta, datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.docker.operators.docker import DockerOperator
-from src.scripts.postgres import (
+from scripts.postgres import (
 subtract_date,
     date_from_baseline_back,
     read_csv,
@@ -35,18 +35,18 @@ with DAG(
     tags=["batch_processing", "postgres"],
 ) as dag:
 
-    # Date transformation tasks
-    date_transformation_task1 = PythonOperator(
-        task_id="date_transformation_task1",
-        python_callable=subtract_date,
-        provide_context=True,  # Access TaskInstance ('ti')
-    )
+    # # Date transformation tasks
+    # date_transformation_task1 = PythonOperator(
+    #     task_id="date_transformation_task1",
+    #     python_callable=subtract_date,
+    #     provide_context=True,  # Access TaskInstance ('ti')
+    # )
 
-    date_transformation_task2 = PythonOperator(
-        task_id="date_transformation_task2",
-        python_callable=date_from_baseline_back,
-        provide_context=True,
-    )
+    # date_transformation_task2 = PythonOperator(
+    #     task_id="date_transformation_task2",
+    #     python_callable=date_from_baseline_back,
+    #     provide_context=True,
+    # )
 
     # Reading data task
     read_the_data_task = PythonOperator(
@@ -87,4 +87,4 @@ with DAG(
     )
 
     # Define the task dependencies
-    date_transformation_task1 >> date_transformation_task2 >> read_the_data_task >> data_processing_task >> connect_to_db_task >> database_setup_task >> insert_data_to_db_task
+    read_the_data_task >> data_processing_task >> connect_to_db_task >> database_setup_task >> insert_data_to_db_task
