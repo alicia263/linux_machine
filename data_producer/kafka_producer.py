@@ -16,7 +16,7 @@ ch.setFormatter(log_format)
 logger.addHandler(ch)
 
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "customer_data")
-KAFKA_BOOTSTRAP_SERVER = os.getenv("KAFKA_BOOTSTRAP_SERVER", "172.18.0.6:9092")
+KAFKA_BOOTSTRAP_SERVER = os.getenv("KAFKA_BOOTSTRAP_SERVER", "172.18.0.4:9092")
 
 def preprocess_input_df(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -148,11 +148,34 @@ def stream_data(producer: KafkaProducer, data: pd.DataFrame) -> None:
         time.sleep(10)  # For demo and development
         # time.sleep(60) # Uncomment to stream data every minute
 
-# Main execution
-if __name__ == "__main__":
+# # Main execution
+# if __name__ == "__main__":
+#     logger.info("Reading a small subset of data for dummy streaming...")
+#     food_delivery_stream = pd.read_csv("https://raw.githubusercontent.com/Ashraf1395/customer_retention_analytics/main/streaming_pipeline/data/train.csv")
+#     food_delivery_stream = preprocess_input_df(food_delivery_stream)
+    
+#     producer = create_kafka_producer()
+#     stream_data(producer, food_delivery_stream)
+
+def main() -> None:
+    """
+    Main function to read data, preprocess it, create a Kafka producer, and stream the data.
+    """
     logger.info("Reading a small subset of data for dummy streaming...")
+    
+    # Read the data from the provided URL
     food_delivery_stream = pd.read_csv("https://raw.githubusercontent.com/Ashraf1395/customer_retention_analytics/main/streaming_pipeline/data/train.csv")
+    
+    # Preprocess the data
     food_delivery_stream = preprocess_input_df(food_delivery_stream)
     
+    # Create Kafka producer
     producer = create_kafka_producer()
+    
+    # Stream the data to Kafka
     stream_data(producer, food_delivery_stream)
+
+# Main execution
+if __name__ == "__main__":
+    main()
+

@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 # Database connection settings
 DB_USER = os.getenv('POSTGRES_USER', 'customer_data_user')
 DB_PASSWORD = os.getenv('POSTGRES_PASSWORD', 'SuperSecurePwdHere')
-DB_HOST = os.getenv('DB_HOST', '172.18.0.2')
+DB_HOST = os.getenv('DB_HOST', '172.18.0.5')
 DB_PORT = os.getenv('DB_PORT', '5432')
 DB_NAME = os.getenv('POSTGRES_DB', 'customer_data_db')
 DB_CONNECTION_URL = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'

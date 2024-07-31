@@ -10,10 +10,11 @@ RUN apt-get update && apt-get install -y gcc g++ make
 USER 1001
 
 RUN pip install py4j
-RUN pip install SQLAlchemy==1.4.49 numpy==1.25.2 pandas==1.4.2
+RUN pip install SQLAlchemy==1.4.49 numpy==1.25.2 pandas==1.4.2   sqlalchemy  psycopg2-binary
 
-COPY ./airflow/dags/spark_streaming.py ./spark_streaming.py
-COPY ./airflow/dags/db_utils.py ./db_utils.py
+
+COPY ./spark/spark_streaming.py ./spark_streaming.py
+COPY ./spark/db_utils.py ./db_utils.py
 
 ENV POSTGRES_DOCKER_USER=host.docker.internal
 ARG POSTGRES_PASSWORD
